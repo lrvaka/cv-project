@@ -21,13 +21,13 @@ export default class GeneralInfo extends Component {
     return (
       <StyledSection>
         <StyledTopSection>
-          <Input initialInputDisplayText="Enter Name" />
+          <Input initialInputDisplayText="Luke Vakasisikakala" />
         </StyledTopSection>
         <StyledBottomSection>
-          <Input initialInputDisplayText="Enter Location" />
-          <Input initialInputDisplayText="Enter Phone" />
-          <Input initialInputDisplayText="Enter Email" />
-          <Input initialInputDisplayText="Enter Website" />
+          <Input initialInputDisplayText="New York, NY" />
+          <Input initialInputDisplayText="347-818-4413" />
+          <Input initialInputDisplayText="lukevakasisikakala@gmail.com" />
+          <Input initialInputDisplayText="lrvaka.com" />
         </StyledBottomSection>
       </StyledSection>
     );

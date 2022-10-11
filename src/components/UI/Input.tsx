@@ -6,22 +6,23 @@ const StyledButton = styled.button<{ clicked: boolean }>`
 `;
 
 const StyledInput = styled.div`
-  display: flex;
-  justify-content: center;
+
   &:hover ${StyledButton} {
     display: inline;
   }
 `;
 
-const StyledDisplay = styled.span``;
+const StyledDisplay = styled.span<{ weight?: string }>`
+  font-weight: ${(props) => props.weight};
+`;
 
 const StyledInputElement = styled.input`
+  border-width: 0.1px;
   font-size: inherit;
-  width: 50%;
 `;
 
 export default class Input extends Component<
-  { initialInputDisplayText: string },
+  { initialInputDisplayText: string; weight?: string },
   { clicked: boolean; inputDisplayText: string }
 > {
   constructor(props: any) {
@@ -39,10 +40,6 @@ export default class Input extends Component<
 
   // use arrow methods for lexical binding
   changeInputTypeHandler = () => {
-    // Prevents inputDisplayText from being empty
-    if (this.state.inputDisplayText === "") {
-      this.setState({ inputDisplayText: this.props.initialInputDisplayText });
-    }
     this.setState({ clicked: !this.state.clicked });
   };
 
@@ -60,7 +57,9 @@ export default class Input extends Component<
             onChange={this.updateValueHandler}
           />
         ) : (
-          <StyledDisplay>{this.state.inputDisplayText}</StyledDisplay>
+          <StyledDisplay weight={this.props.weight}>
+            {this.state.inputDisplayText}
+          </StyledDisplay>
         )}
 
         <StyledButton
