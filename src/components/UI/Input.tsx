@@ -6,23 +6,36 @@ const StyledButton = styled.button<{ clicked: boolean }>`
 `;
 
 const StyledInput = styled.div`
-
+  width: ${(props) => props.inputMode};
   &:hover ${StyledButton} {
     display: inline;
   }
 `;
 
-const StyledDisplay = styled.span<{ weight?: string }>`
+const StyledDisplay = styled.span<{
+  weight?: string;
+  displayStyle?: string;
+}>`
   font-weight: ${(props) => props.weight};
+  font-style: ${(props) => props.displayStyle};
 `;
 
-const StyledInputElement = styled.input`
+const StyledInputElement = styled.textarea<{
+  inputWidth?: number;
+}>`
   border-width: 0.1px;
   font-size: inherit;
+  width: ${(props) => props.inputWidth}%;
+  height: min-content;
 `;
 
 export default class Input extends Component<
-  { initialInputDisplayText: string; weight?: string },
+  {
+    initialInputDisplayText: string;
+    weight?: string;
+    displayStyle?: string;
+    inputWidth?: number;
+  },
   { clicked: boolean; inputDisplayText: string }
 > {
   constructor(props: any) {
@@ -44,7 +57,7 @@ export default class Input extends Component<
   };
 
   //type of event - React.FormEvent
-  updateValueHandler = (e: React.FormEvent<HTMLInputElement>): void => {
+  updateValueHandler = (e: React.FormEvent<HTMLTextAreaElement>): void => {
     this.setState({ inputDisplayText: e.currentTarget.value });
   };
 
@@ -55,9 +68,13 @@ export default class Input extends Component<
           <StyledInputElement
             value={this.state.inputDisplayText}
             onChange={this.updateValueHandler}
+            inputWidth={this.props.inputWidth}
           />
         ) : (
-          <StyledDisplay weight={this.props.weight}>
+          <StyledDisplay
+            weight={this.props.weight}
+            displayStyle={this.props.displayStyle}
+          >
             {this.state.inputDisplayText}
           </StyledDisplay>
         )}

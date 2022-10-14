@@ -4,7 +4,6 @@ import styled from "styled-components";
 const SectionItemsContainer = styled.div`
   padding-left: 2rem;
   padding-top: 0.5rem;
-  padding-bottom: 1rem;
 `;
 
 const SectionHeading = styled.h2`
